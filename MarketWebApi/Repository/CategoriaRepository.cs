@@ -40,18 +40,23 @@ namespace MarketWebApi.Repository
                 AnyAsync(c => c.Descripcion == descripcion.Trim() && c.Estado);
         }
 
+        public async Task<bool> Save()
+        {
+            var saved = await _context.SaveChangesAsync();
+            return saved > 0 ? true : false; ;
+        }
+
         public async Task<Categoria> Add(Categoria categoria)
         {
             _context.Categorias.Add(categoria);
-            await _context.SaveChangesAsync();
+            await Save();
             return categoria;
         }
 
-        public async Task<Categoria> Update(Categoria categoria)
+        public async Task<bool> Update(Categoria categoria)
         {
             _context.Categorias.Update(categoria);
-            await _context.SaveChangesAsync();
-            return categoria;
+            return await Save();   
         }
 
         public async Task<bool> Delete(int id)
@@ -65,9 +70,7 @@ namespace MarketWebApi.Repository
 
             categoria.Estado = false;
 
-            await _context.SaveChangesAsync();
-
-            return true;
+            return await Save();
         }
     }
 }

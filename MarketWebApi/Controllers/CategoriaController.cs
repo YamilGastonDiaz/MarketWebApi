@@ -18,28 +18,17 @@ namespace MarketWebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<CategoriaDTO>> GetCategorias()
+        public async Task<ActionResult<IEnumerable<CategoriaDTO>>> GetCategorias()
         {
-            var categoria =  await _categoriaRepository.GetCategorias();
-            var resultado = categoria.Select(c => c.ToCategoriaDto());
+            var categorias = await _categoriaRepository.GetCategorias();
 
-            return resultado;
+            return Ok(categorias.Select(c => c.ToCategoriaDto()));
         }
 
         [HttpGet("id/{id:int}", Name = "ObtenerCategoria")]
         public async Task<ActionResult<CategoriaDTO>> GetCategoria(int id)
         {
-            if(!await _categoriaRepository.CategoriaExiste(id))
-            {
-                return NotFound();
-            }
-
             var categoria = await _categoriaRepository.GetCategoria(id);
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
             if (categoria == null)
             {
@@ -71,7 +60,7 @@ namespace MarketWebApi.Controllers
         {
             if (await _categoriaRepository.NombreExiste(dto.Descripcion)) 
             {
-                return BadRequest();
+                return BadRequest("La categoría ya existe");
             }
 
             var categoria = dto.ToCategoria();
