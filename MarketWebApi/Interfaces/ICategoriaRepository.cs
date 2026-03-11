@@ -4,7 +4,7 @@ namespace MarketWebApi.Interfaces
 {
     public interface ICategoriaRepository
     {
-        Task<IEnumerable<Categoria>>GetCategorias();
+        IQueryable<Categoria> GetCategorias();
         Task<Categoria> GetCategoria(int id);
         Task<Categoria> GetCategoria(string descripcion);
         Task<Categoria> Add(Categoria categoria);

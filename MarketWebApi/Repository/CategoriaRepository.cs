@@ -14,9 +14,10 @@ namespace MarketWebApi.Repository
             _context = context;
         }
 
-        public async Task<IEnumerable<Categoria>> GetCategorias()
+        public IQueryable<Categoria> GetCategorias()
         {
-            return await _context.Categorias.Where(c => c.Estado).ToListAsync();
+            return _context.Categorias.Where(c => c.Estado)
+                .AsQueryable();
         }
 
         public async Task<Categoria> GetCategoria(int id)
@@ -70,7 +71,7 @@ namespace MarketWebApi.Repository
 
             categoria.Estado = false;
 
-            return await Save();
+            return await Update(categoria);
         }
     }
 }

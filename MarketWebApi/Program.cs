@@ -7,6 +7,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 //Inicio del área de servicio
 
+var origenesPermitidos = builder.Configuration.GetSection("origenesPermitidos").Get<string[]>()!;
+
+builder.Services.AddCors(opciones =>
+{
+    opciones.AddDefaultPolicy(opcionesCORS =>
+    {
+        opcionesCORS.WithOrigins(origenesPermitidos).AllowAnyMethod().AllowAnyHeader().
+        WithExposedHeaders("cantidad-total-registros");
+    });
+});
+
 builder.Services.AddControllers();
 builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
 

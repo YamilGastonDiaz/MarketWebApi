@@ -2,7 +2,9 @@
 using MarketWebApi.Interfaces;
 using MarketWebApi.Mapping;
 using MarketWebApi.Models;
+using MarketWebApi.Utilities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace MarketWebApi.Controllers
 {
@@ -18,9 +20,13 @@ namespace MarketWebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CategoriaDTO>>> GetCategorias()
+        public async Task<ActionResult<IEnumerable<CategoriaDTO>>> GetCategorias([FromQuery] PaginacionDTO paginacionDTO)
         {
-            var categorias = await _categoriaRepository.GetCategorias();
+            var queryable =  _categoriaRepository.GetCategorias();
+
+            await HttpContext.InsertParametrosPaginacion(queryable);
+
+            var categorias = await queryable.OrderBy(c => c.Descripcion).Paginar(paginacionDTO).ToListAsync();
 
             return Ok(categorias.Select(c => c.ToCategoriaDto()));
         }
