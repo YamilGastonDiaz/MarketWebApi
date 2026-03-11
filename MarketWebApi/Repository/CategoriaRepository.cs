@@ -14,10 +14,9 @@ namespace MarketWebApi.Repository
             _context = context;
         }
 
-        public IQueryable<Categoria> GetCategorias()
+        public async Task<IEnumerable<Categoria>> GetCategorias()
         {
-            return _context.Categorias.Where(c => c.Estado)
-                .AsQueryable();
+            return await _context.Categorias.Where(c => c.Estado).ToListAsync();
         }
 
         public async Task<Categoria> GetCategoria(int id)

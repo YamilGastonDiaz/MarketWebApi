@@ -20,13 +20,9 @@ namespace MarketWebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CategoriaDTO>>> GetCategorias([FromQuery] PaginacionDTO paginacionDTO)
+        public async Task<ActionResult<IEnumerable<CategoriaDTO>>> GetCategorias()
         {
-            var queryable =  _categoriaRepository.GetCategorias();
-
-            await HttpContext.InsertParametrosPaginacion(queryable);
-
-            var categorias = await queryable.OrderBy(c => c.Descripcion).Paginar(paginacionDTO).ToListAsync();
+            var categorias = await _categoriaRepository.GetCategorias();
 
             return Ok(categorias.Select(c => c.ToCategoriaDto()));
         }
