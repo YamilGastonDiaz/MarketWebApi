@@ -2,7 +2,6 @@
 using MarketWebApi.Interfaces;
 using MarketWebApi.Mapping;
 using MarketWebApi.Models;
-using MarketWebApi.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

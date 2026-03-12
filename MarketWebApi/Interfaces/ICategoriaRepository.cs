@@ -10,7 +10,7 @@ namespace MarketWebApi.Interfaces
         Task<Categoria> Add(Categoria categoria);
         Task<bool> Update(Categoria categoria);
         Task<bool> Delete(int id);
-        Task<bool> CategoriaExiste(int categoriaId);
+        Task<bool> CategoriaExiste(int id);
         Task<bool> NombreExiste(string descripcion);
         Task<bool> Save();
     }
