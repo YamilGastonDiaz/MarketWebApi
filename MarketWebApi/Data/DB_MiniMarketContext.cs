@@ -24,7 +24,7 @@ public partial class DB_MiniMarketContext : DbContext
 
     public virtual DbSet<Producto> Productos { get; set; }
 
-    public virtual DbSet<Proveedore> Proveedores { get; set; }
+    public virtual DbSet<Proveedor> Proveedores { get; set; }
 
     public virtual DbSet<StockProducto> StockProductos { get; set; }
 
@@ -155,7 +155,7 @@ public partial class DB_MiniMarketContext : DbContext
                 .HasConstraintName("FK__Productos__id_Ma__37A5467C");
         });
 
-        modelBuilder.Entity<Proveedore>(entity =>
+        modelBuilder.Entity<Proveedor>(entity =>
         {
             entity.HasKey(e => e.Proveedor_id).HasName("PK__Proveedo__0791AFE3460AD615");
 

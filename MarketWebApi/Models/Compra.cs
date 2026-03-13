@@ -11,5 +11,5 @@ public partial class Compra
     public decimal Total_importe { get; set; }
     public bool Estado { get; set; } = true;
     public virtual ICollection<DetalleCompra> DetalleCompras { get; set; } = new List<DetalleCompra>();
-    public virtual Proveedore id_ProveedorNavigation { get; set; }
+    public virtual Proveedor id_ProveedorNavigation { get; set; }
 }
