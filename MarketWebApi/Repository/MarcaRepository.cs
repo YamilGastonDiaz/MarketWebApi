@@ -21,23 +21,20 @@ namespace MarketWebApi.Repository
 
         public async Task<Marca> GetMarca(int id)
         {
-            return await _context.Marcas.FindAsync(id);
+            return await _context.Marcas.FirstOrDefaultAsync(m => m.Marca_id == id && m.Estado);
         }
 
         public async Task<Marca> GetMarca(string descripcion)
         {
-            return await _context.Marcas.FirstOrDefaultAsync(m => m.Descripcion == descripcion);
-        }
-
-        public async Task<bool> MarcaExiste(int id)
-        {
-            return await _context.Marcas.AnyAsync(m => m.Marca_id == id);
+            return await _context.Marcas.FirstOrDefaultAsync(m => m.Descripcion == descripcion && m.Estado);
         }
 
         public async Task<bool> NombreExiste(string descripcion)
         {
+            var descripcionLimpia = descripcion.Trim();
+
             return await _context.Marcas.
-                AnyAsync(m => m.Descripcion == descripcion.Trim() && m.Estado);
+                AnyAsync(m => m.Descripcion == descripcionLimpia && m.Estado);
         }
 
         public async Task<bool> Save()
@@ -55,13 +52,13 @@ namespace MarketWebApi.Repository
 
         public async Task<bool> Update(Marca marca)
         {
-            _context.Update(marca);
+            _context.Marcas.Update(marca);
             return await Save();
         }
 
         public async Task<bool> Delete(int id)
         {
-            var marca = await _context.Marcas.FirstOrDefaultAsync(m => m.Marca_id == id);
+            var marca = await _context.Marcas.FirstOrDefaultAsync(m => m.Marca_id == id && m.Estado);
 
             if(marca == null)
             {
@@ -70,7 +67,7 @@ namespace MarketWebApi.Repository
 
             marca.Estado = false;
 
-            return await Update(marca);
+            return await Save();
         }
     }
 }

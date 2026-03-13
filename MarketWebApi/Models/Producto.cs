@@ -6,20 +6,13 @@ namespace MarketWebApi.Models;
 public partial class Producto
 {
     public int Producto_id { get; set; }
-
-    public string CodigoBarras { get; set; } = null!;
-
+    public string CodigoBarras { get; set; }
     public int id_Categoria { get; set; }
-
     public int id_Marca { get; set; }
-
     public int id_Empaque { get; set; }
-
-    public string Descripcion { get; set; } = null!;
-
-    public decimal? Stock_min { get; set; }
-
-    public bool Estado { get; set; }
+    public string Descripcion { get; set; }
+    public decimal Stock_min { get; set; }
+    public bool Estado { get; set; } = true;
 
     public virtual ICollection<DetalleCompra> DetalleCompras { get; set; } = new List<DetalleCompra>();
 

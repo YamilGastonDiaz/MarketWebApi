@@ -21,23 +21,20 @@ namespace MarketWebApi.Repository
 
         public async Task<Categoria> GetCategoria(int id)
         {
-            return await _context.Categorias.FindAsync(id);
+            return await _context.Categorias.FirstOrDefaultAsync(c => c.Categoria_id == id && c.Estado);
         }
 
         public async Task<Categoria> GetCategoria(string descripcion)
         {
-            return await _context.Categorias.FirstOrDefaultAsync(c => c.Descripcion == descripcion);
-        }
-
-        public async Task<bool> CategoriaExiste(int id)
-        {
-            return await _context.Categorias.AnyAsync(c => c.Categoria_id == id);
+            return await _context.Categorias.FirstOrDefaultAsync(c => c.Descripcion == descripcion && c.Estado);
         }
 
         public async Task<bool> NombreExiste(string descripcion)
         {
+            var descripcionLimpia = descripcion.Trim();
+
             return await _context.Categorias.
-                AnyAsync(c => c.Descripcion == descripcion.Trim() && c.Estado);
+                AnyAsync(c => c.Descripcion == descripcionLimpia && c.Estado);
         }
 
         public async Task<bool> Save()
@@ -61,7 +58,8 @@ namespace MarketWebApi.Repository
 
         public async Task<bool> Delete(int id)
         {
-            var categoria = await _context.Categorias.FirstOrDefaultAsync(c => c.Categoria_id == id);
+            var categoria = await _context.Categorias.
+                FirstOrDefaultAsync(c => c.Categoria_id == id && c.Estado);
 
             if (categoria == null)
             {
@@ -70,7 +68,7 @@ namespace MarketWebApi.Repository
 
             categoria.Estado = false;
 
-            return await Update(categoria);
+            return await Save();
         }
     }
 }

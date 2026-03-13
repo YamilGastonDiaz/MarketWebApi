@@ -7,6 +7,6 @@ public partial class Categoria
 {
     public int Categoria_id { get; set; }
     public string Descripcion { get; set; }
-    public bool Estado { get; set; }
+    public bool Estado { get; set; } = true;
     public virtual ICollection<Producto> Productos { get; set; } = new List<Producto>();
 }
