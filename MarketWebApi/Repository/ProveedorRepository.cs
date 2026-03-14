@@ -21,12 +21,12 @@ namespace MarketWebApi.Repository
 
         public async Task<Proveedor> GetProveedor(int id)
         {
-            return await _context.Proveedores.FirstOrDefaultAsync(p => p.Proveedor_id == id && p.Estado);
+            return (await _context.Proveedores.FirstOrDefaultAsync(p => p.Proveedor_id == id && p.Estado))!;
         }
 
-        public async Task<Proveedor> GetProveedor(string cuit)
+        public async Task<Proveedor> GetProveedor(string nombre)
         {
-            return await _context.Proveedores.FirstOrDefaultAsync(p => p.CUIT == cuit && p.Estado);
+            return (await _context.Proveedores.FirstOrDefaultAsync(p => p.Nombre == nombre && p.Estado))!;
         }
 
         public async Task<bool> CuitExiste(string cuit)

@@ -11,7 +11,7 @@ namespace MarketWebApi.Mapping
             {
                 Empaque_id = empaque.Empaque_id,
                 Descripcion = empaque.Descripcion,
-                CantidadUnidad = empaque.CantidadUnidad
+                CantidadUnidad = empaque.CantidadUnidad!.Value
             };
         }
 
@@ -19,15 +19,22 @@ namespace MarketWebApi.Mapping
         {
             return new TiposEmpaque
             {
-                Descripcion = dto.Descripcion.Trim(),
+                Descripcion = dto.Descripcion!.Trim(),
                 CantidadUnidad = dto.CantidadUnidad
             };
         }
 
         public static void UpdateEmpaque(this UpdateEmpaqueDTO dto, TiposEmpaque empaque)
         {
-            empaque.Descripcion = dto.Descripcion;
-            empaque.CantidadUnidad = dto.CantidadUnidad;
+            if (!string.IsNullOrWhiteSpace(dto.Descripcion))
+            {
+                empaque.Descripcion = dto.Descripcion!.Trim();
+            }
+
+            if (dto.CantidadUnidad.HasValue)
+            {
+                empaque.CantidadUnidad = dto.CantidadUnidad.Value;
+            }
         }
     }
 }

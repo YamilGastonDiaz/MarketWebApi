@@ -2,6 +2,6 @@
 {
     public class CreateMarcaDTO
     {
-        public string Descripcion { get; set; }
+        public string? Descripcion { get; set; }
     }
 }

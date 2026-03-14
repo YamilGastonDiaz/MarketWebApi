@@ -1,7 +1,6 @@
 ﻿using MarketWebApi.DTOs;
 using MarketWebApi.Interfaces;
 using MarketWebApi.Mapping;
-using MarketWebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarketWebApi.Controllers
@@ -58,7 +57,7 @@ namespace MarketWebApi.Controllers
         [HttpPost]
         public async Task<ActionResult> Post(CreateMarcaDTO dto)
         {
-            if (await _marcaRepository.NombreExiste(dto.Descripcion))
+            if (await _marcaRepository.NombreExiste(dto.Descripcion!))
             {
                 return BadRequest("La marca ya existe");
             }

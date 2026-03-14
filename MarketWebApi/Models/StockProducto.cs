@@ -10,5 +10,5 @@ public partial class StockProducto
     public decimal Stock_actual { get; set; }
     public decimal PrecioDia { get; set; }
     public decimal PrecioNoche { get; set; }
-    public virtual Producto id_ProductoNavigation { get; set; }
+    public virtual Producto id_ProductoNavigation { get; set; } = null!;
 }

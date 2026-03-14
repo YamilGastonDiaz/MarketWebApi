@@ -2,6 +2,6 @@
 {
     public class CreateCategoriaDTO
     {
-        public string Descripcion { get; set; }
+        public string? Descripcion { get; set; }
     }
 }

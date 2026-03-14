@@ -23,7 +23,7 @@ namespace MarketWebApi.Mapping
         {
             return new Proveedor
             {
-                Nombre = dto.Nombre,
+                Nombre = dto.Nombre!,
                 CUIT = dto.CUIT,
                 Direccion = dto.Direccion,
                 Telefono = dto.Telefono,
@@ -34,12 +34,35 @@ namespace MarketWebApi.Mapping
 
         public static void UpdateProveedor(this UpdateProveedorDTO dto, Proveedor proveedor)
         {
-            proveedor.Nombre = dto.Nombre.Trim();
-            proveedor.CUIT = dto.CUIT.Trim();
-            proveedor.Direccion = dto.Direccion.Trim();
-            proveedor.Telefono = dto.Telefono.Trim();
-            proveedor.Email = dto.Email.Trim();
-            proveedor.Empresa = dto.Empresa.Trim();
+            if (!string.IsNullOrWhiteSpace(dto.Nombre))
+            {
+                proveedor.Nombre = dto.Nombre!.Trim();
+            }
+                
+            if (!string.IsNullOrWhiteSpace(dto.CUIT))
+            {
+                proveedor.CUIT = dto.CUIT!.Trim();
+            }
+                
+            if (!string.IsNullOrWhiteSpace(dto.Direccion))
+            {
+                proveedor.Direccion = dto.Direccion!.Trim();
+            }
+                
+            if (!string.IsNullOrWhiteSpace(dto.Telefono))
+            {
+                proveedor.Telefono = dto.Telefono!.Trim();
+            }
+               
+            if (!string.IsNullOrWhiteSpace(dto.Email))
+            {
+                proveedor.Email = dto.Email!.Trim();
+            }
+                
+            if (!string.IsNullOrWhiteSpace(dto.Empresa))
+            {
+                proveedor.Empresa = dto.Empresa!.Trim();
+            }
         }
     }
 }

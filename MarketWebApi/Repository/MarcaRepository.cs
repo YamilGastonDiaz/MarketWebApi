@@ -21,12 +21,12 @@ namespace MarketWebApi.Repository
 
         public async Task<Marca> GetMarca(int id)
         {
-            return await _context.Marcas.FirstOrDefaultAsync(m => m.Marca_id == id && m.Estado);
+            return (await _context.Marcas.FirstOrDefaultAsync(m => m.Marca_id == id && m.Estado))!;
         }
 
         public async Task<Marca> GetMarca(string descripcion)
         {
-            return await _context.Marcas.FirstOrDefaultAsync(m => m.Descripcion == descripcion && m.Estado);
+            return (await _context.Marcas.FirstOrDefaultAsync(m => m.Descripcion == descripcion && m.Estado))!;
         }
 
         public async Task<bool> NombreExiste(string descripcion)

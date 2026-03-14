@@ -18,13 +18,13 @@ namespace MarketWebApi.Mapping
         {
             return new Marca
             {
-                Descripcion = dto.Descripcion.Trim()
+                Descripcion = dto.Descripcion!.Trim()
             };
         }
 
         public static void UpdateMarca(this UpdateMarcaDTO dto, Marca marca)
         {
-            marca.Descripcion = dto.Descripcion.Trim();
+            marca.Descripcion = dto.Descripcion!.Trim();
         }
     }
 }

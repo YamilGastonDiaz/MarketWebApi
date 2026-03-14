@@ -11,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddScoped<IMarcaRepository, MarcaRepository>();
 builder.Services.AddScoped<ITiposEmpaqueRepository, TiposEmpaqueRepository>();
+builder.Services.AddScoped<IProveedorRepository, ProveedorRepository>();
 
 builder.Services.AddEndpointsApiExplorer();
 

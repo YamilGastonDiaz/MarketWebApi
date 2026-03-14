@@ -13,7 +13,7 @@ public partial class DetalleCompra
     public decimal PrecioCompra { get; set; }
     public decimal Subtotal { get; set; }
     public bool Estado { get; set; } = true;
-    public virtual Compra id_CompraNavigation { get; set; }
-    public virtual Marca id_MarcaNavigation { get; set; }
-    public virtual Producto id_ProductoNavigation { get; set; }
+    public virtual Compra id_CompraNavigation { get; set; } = null!;
+    public virtual Marca id_MarcaNavigation { get; set; } = null!;
+    public virtual Producto id_ProductoNavigation { get; set; } = null!;
 }

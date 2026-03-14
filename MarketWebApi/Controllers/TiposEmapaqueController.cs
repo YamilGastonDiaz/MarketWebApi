@@ -1,7 +1,6 @@
 ﻿using MarketWebApi.DTOs;
 using MarketWebApi.Interfaces;
 using MarketWebApi.Mapping;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarketWebApi.Controllers
@@ -58,7 +57,7 @@ namespace MarketWebApi.Controllers
         [HttpPost]
         public async Task<ActionResult> Post(CrearteEmpaqueDTO dto)
         {
-            if(await _empaqueRepository.NombreExiste(dto.Descripcion))
+            if(await _empaqueRepository.NombreExiste(dto.Descripcion!))
             {
                 return BadRequest("El empaque ya existe");
             }

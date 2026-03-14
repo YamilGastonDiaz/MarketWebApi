@@ -21,12 +21,12 @@ namespace MarketWebApi.Repository
 
         public async Task<TiposEmpaque> GetTiposEmpaque(int id)
         {
-            return await _context.TiposEmpaques.FirstOrDefaultAsync(e => e.Empaque_id == id && e.Estado);
+            return (await _context.TiposEmpaques.FirstOrDefaultAsync(e => e.Empaque_id == id && e.Estado))!;
         }
 
         public async Task<TiposEmpaque> GetTiposEmpaque(string descripcion)
         {
-            return await _context.TiposEmpaques.FirstOrDefaultAsync(e => e.Descripcion == descripcion && e.Estado);
+            return (await _context.TiposEmpaques.FirstOrDefaultAsync(e => e.Descripcion == descripcion && e.Estado))!;
         }
 
         public async Task<bool> NombreExiste(string descripcion)

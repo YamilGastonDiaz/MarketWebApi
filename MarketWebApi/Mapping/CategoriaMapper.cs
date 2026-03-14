@@ -18,13 +18,13 @@ namespace MarketWebApi.Mapping
         {
             return new Categoria
             {
-                Descripcion = dto.Descripcion.Trim()
+                Descripcion = dto.Descripcion!.Trim()
             };
         }
 
         public static void UpdateCategoria(this UpdateCategoriaDTO dto, Categoria categoria)
         {
-            categoria.Descripcion = dto.Descripcion.Trim();
+            categoria.Descripcion = dto.Descripcion!.Trim();
         }
     }
 }

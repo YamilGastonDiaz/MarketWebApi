@@ -12,6 +12,6 @@ public partial class Venta
     public decimal Total_importe { get; set; }
     public bool Estado { get; set; } = true;
     public virtual ICollection<DetalleVenta> DetalleVenta { get; set; } = new List<DetalleVenta>();
-    public virtual TurnosCajero id_TurnoNavigation { get; set; }
-    public virtual Usuario id_UsuarioNavigation { get; set; }
+    public virtual TurnosCajero id_TurnoNavigation { get; set; } = null!;
+    public virtual Usuario id_UsuarioNavigation { get; set; } = null!;
 }
